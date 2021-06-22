@@ -4,10 +4,10 @@
 Este é um projeto utilizando ferramentas de análise e tratamento de dados como MySQL workbench, metabase e referências externas, dentro das informações disponíveis pela STEAM (https://store.steampowered.com/app/353380/Steam_Link/)
 
 
-#Análise de dados - Explorando a base 
+# Análise de dados - Explorando a base 
 As análises abordadas aqui, envolvem o banco de dados de +27K linhas em relação as perguntas abaixo:
 
-.Q1
+.Q1 
 .Q2
 .Q3
 .Q4
