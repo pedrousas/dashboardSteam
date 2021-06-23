@@ -1,14 +1,13 @@
 #Dados de Novembro de 1998 ate Marco 2019
 
 #1. Em qual ano houve mais lançamentos de títulos
-#2013
 select year(release_date) as ano, count(appid) as qt
 from steam
 group by ano
 order by qt desc;
 
 #1A. Em qual ano houve mais lançamentos de títulos
-#2013
+
 select year(release_date) as ano, count(appid) as qt
 from steam
 group by ano
