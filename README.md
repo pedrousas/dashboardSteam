@@ -20,6 +20,7 @@
     - [Pergunta 14](#pergunta-14)
     - [Pergunta 15](#pergunta-15)
     - [Pergunta 16](#pergunta-16)
+    - [Pergunta 17](#pergunta-17)
 5. [Contribuintes](#contribuintes)
     
 ## Sobre o projeto
@@ -51,7 +52,7 @@ having Ano  = 2018
 order by total desc;
 ```
 ### Pergunta 2 
-- Quais os 10 Developers que produziram mais títulos
+- Top 10 Developers & Publishers
 
 ```sql
 select developer, count(name) as quant_titulos
@@ -61,7 +62,7 @@ order by quant_titulos desc
 limit 10;
 ```
 ### Pergunta 3
-- Quais são as 10 editora(publishers) que lançaram mais títulos
+- Top 10 Publishers
 
 ```sql
 select publisher, count(name) as quant_titulos
@@ -81,7 +82,7 @@ order by numero_jogos desc;
 
 ```
 ### Pergunta 5 
-- Quantidade de jogos apenas single player
+- Quantidade de jogos exclusivamente Single player
 
 ```sql
 select count(name) as jogos, categories
@@ -91,7 +92,7 @@ group by categories
 order by jogos desc;
 ```
 ### Pergunta 6
-- Quantidade de jogos apenas Multi-Player
+- qt de jogos exclusivamente Multi-Player
 
 ```sql
 select count(name) as jogos, categories
@@ -110,91 +111,107 @@ group by genres
 order by jogos desc;
 ```
 ### Pergunta 8
-- Quantidade de título para maiores de 18 anos
+- Número de títulos para maiores de 18 anos.
 
 ```sql
-select required_age, count(name) from steam
+select required_age as idade, count(name) as qt_titulos
+from steam 
 group by required_age
-having required_age >= 18; 
-select * from steamspy_tag_data;
+having required_age >= 18;
 ```
 ### Pergunta 9
-- Títulos disponível pelos valores
+- Títulos disponíveis por valores
 
 ```sql
 select distinct price as Preco, name
 from steam
 where price > 0
-order by Preco asc;
+order by Preco desc;
 ```
 ### Pergunta 10
-- Quais jogos de 2019 possuem assistencia completa ao cliente.
+- Quantidade de jogos que possuem assistência completa ao cliente.
 
 ```sql
-select appid, name, website, support_url, support_email, release_date
-from steam
-inner join steam_support_info
-on steam.appid = steam_support_info.steam_appid
-where website <> '' && support_url <> '' && support_email <> '' && year(release_date) = 2019
+select count(name) from
+(
+    select name, website, support_url, support_email, release_date
+    from steam
+    inner join steam_support_info
+    on steam.appid = steam_support_info.steam_appid
+    where website <> '' && support_url <> '' && support_email <> '' && year(release_date)
+) as c;
 ```
 ### Pergunta 11
-- Qual jogo possuem um número maior de jogadores
+- Top títulos pelo número de downloads
 
 ```sql
-select name, max(owners)
+select name as Título, max(owners) as Qt_Jogadores
 from steam
 group by name
-limit 5;
+order by max(owners) desc
+limit 2;
 ```
 ### Pergunta 12
-- Qual jogo possui o maior e numero de ratings positivos
+- Top 10 Títulos com maior número de ratings positivos
 
 ```sql
 select name as Jogo, max(positive_ratings) as Avaliação_Positiva
 from steam
 group by Jogo
-order by Avaliação_Positiva desc;
+order by Avaliação_Positiva desc
 limit 10;
 ```
 ### Pergunta 13
-- Qual jogo possui o menor e numero de ratings positivos
+- Top 10 Títulos com maior número de ratings negativos
 
 ```sql
-select name as Jogo, max(positive_ratings) as Avaliação_Positiva
+select name as Jogo, max(negative_ratings) as Avaliação_negativa
 from steam
 group by Jogo
-order by Avaliação_Positiva;
+order by Avaliação_negativa desc
 limit 10;
 ```
 ### Pergunta 14
-- Quais os 3 jogos que possuem maior tempo medio de playtime
+- Top 10 jogos com maior tempo medio de playtime
 
 ```sql
 select name as game, average_playtime as playtime
 from steam
 order by playtime desc
-limit 3;
+limit 10;
 ```
 ### Pergunta 15
-- Quais são os 10 títulos mais caros
+- Top 10 títulos mais caros
 
 ```sql
-select * from steam;
-select name, max(price)
+select name as Jogo, max(price) as Preço
 from steam
 group by name
-order by max(price) desc
-limit 5;
+order by Preço desc
+limit 10;
 ```
 ### Pergunta 16
 - Jogos que  possuem mais jogadores (ownners)
-teste
 
 ```sql
-select name, owners, price
+select name as Jogo, owners as qt_downloads, price as preço
 from steam
 order by owners desc
 limit 5;
+```
+### Pergunta 17
+- Histórico da quantidade de jogos lançados ano a ano
+
+```sql
+select Ano, sum(s) as total from
+(
+    SELECT YEAR(release_date) as Ano, 
+    count(name) as s 
+    FROM steam 
+    GROUP By release_date
+) as t
+group by Ano
+order by total desc;
 ```
 
 # Contribuintes
