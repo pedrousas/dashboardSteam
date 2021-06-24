@@ -51,8 +51,10 @@ group by Ano
 having Ano  = 2018
 order by total desc;
 ```
+![image](https://user-images.githubusercontent.com/67427249/123199838-ff116100-d485-11eb-9d32-a86c56a6a686.png)
+
 ### Pergunta 2 
-- Top 10 Developers & Publishers
+- Top 10 Developers
 
 ```sql
 select developer, count(name) as quant_titulos
@@ -61,6 +63,8 @@ group by developer
 order by quant_titulos desc
 limit 10;
 ```
+![image](https://user-images.githubusercontent.com/67427249/123199997-4e579180-d486-11eb-89f9-283312164925.png)
+
 ### Pergunta 3
 - Top 10 Publishers
 
@@ -71,6 +75,9 @@ group by publisher
 order by quant_titulos desc
 limit 10;
 ```
+![image](https://user-images.githubusercontent.com/67427249/123200043-63ccbb80-d486-11eb-8859-be98176d69c1.png)
+
+
 ### Pergunta 4
 - Pra quais sistemas operacionais existem mais titulos
 
@@ -79,8 +86,10 @@ select count(name) as numero_jogos, platforms
 from steam
 group by platforms
 order by numero_jogos desc;
-
 ```
+![image](https://user-images.githubusercontent.com/67427249/123200136-9080d300-d486-11eb-8756-3904c8827a66.png)
+
+
 ### Pergunta 5 
 - Quantidade de jogos exclusivamente Single player
 
@@ -91,6 +100,9 @@ where categories like 'Single-player'
 group by categories
 order by jogos desc;
 ```
+![image](https://user-images.githubusercontent.com/67427249/123200202-a4c4d000-d486-11eb-98f4-9eb3e9a83095.png)
+
+
 ### Pergunta 6
 - qt de jogos exclusivamente Multi-Player
 
@@ -101,6 +113,8 @@ where categories like 'Multi-Player'
 group by categories
 order by jogos desc;
 ```
+![image](https://user-images.githubusercontent.com/67427249/123200242-b4dcaf80-d486-11eb-9cba-1de5a7bfbcb6.png)
+
 ### Pergunta 7
 - Todos os estilos de jogos
 
@@ -110,6 +124,9 @@ from steam
 group by genres
 order by jogos desc;
 ```
+![image](https://user-images.githubusercontent.com/67427249/123200310-d50c6e80-d486-11eb-8280-fa03f6fba8ba.png)
+
+
 ### Pergunta 8
 - Número de títulos para maiores de 18 anos.
 
@@ -119,6 +136,9 @@ from steam
 group by required_age
 having required_age >= 18;
 ```
+![image](https://user-images.githubusercontent.com/67427249/123200350-e5244e00-d486-11eb-8f5c-9081ce713437.png)
+
+
 ### Pergunta 9
 - Títulos disponíveis por valores
 
@@ -128,6 +148,9 @@ from steam
 where price > 0
 order by Preco desc;
 ```
+![image](https://user-images.githubusercontent.com/67427249/123200378-f79e8780-d486-11eb-94e1-d55af56b37c3.png)
+
+
 ### Pergunta 10
 - Quantidade de jogos que possuem assistência completa ao cliente.
 
@@ -141,6 +164,9 @@ select count(name) from
     where website <> '' && support_url <> '' && support_email <> '' && year(release_date)
 ) as c;
 ```
+![image](https://user-images.githubusercontent.com/67427249/123200410-0c7b1b00-d487-11eb-91e7-0d13186d0997.png)
+
+
 ### Pergunta 11
 - Top títulos pelo número de downloads
 
@@ -151,6 +177,8 @@ group by name
 order by max(owners) desc
 limit 2;
 ```
+![image](https://user-images.githubusercontent.com/67427249/123200452-21f04500-d487-11eb-8dfc-2bbfb9a43b11.png)
+
 ### Pergunta 12
 - Top 10 Títulos com maior número de ratings positivos
 
@@ -161,6 +189,9 @@ group by Jogo
 order by Avaliação_Positiva desc
 limit 10;
 ```
+![image](https://user-images.githubusercontent.com/67427249/123200537-4ea45c80-d487-11eb-8cc4-9364dc571fca.png)
+
+
 ### Pergunta 13
 - Top 10 Títulos com maior número de ratings negativos
 
@@ -171,6 +202,9 @@ group by Jogo
 order by Avaliação_negativa desc
 limit 10;
 ```
+![image](https://user-images.githubusercontent.com/67427249/123200568-5d8b0f00-d487-11eb-9647-5afaf9905973.png)
+
+
 ### Pergunta 14
 - Top 10 jogos com maior tempo medio de playtime
 
@@ -180,6 +214,9 @@ from steam
 order by playtime desc
 limit 10;
 ```
+![image](https://user-images.githubusercontent.com/67427249/123200601-6e3b8500-d487-11eb-9822-4f3fd2f02503.png)
+
+
 ### Pergunta 15
 - Top 10 títulos mais caros
 
@@ -190,6 +227,9 @@ group by name
 order by Preço desc
 limit 10;
 ```
+![image](https://user-images.githubusercontent.com/67427249/123200639-7dbace00-d487-11eb-90a9-7c32762816ec.png)
+
+
 ### Pergunta 16
 - Jogos que  possuem mais jogadores (ownners)
 
@@ -199,6 +239,9 @@ from steam
 order by owners desc
 limit 5;
 ```
+![image](https://user-images.githubusercontent.com/67427249/123200664-8dd2ad80-d487-11eb-8d57-47c585fbaef0.png)
+
+
 ### Pergunta 17
 - Histórico da quantidade de jogos lançados ano a ano
 
@@ -213,6 +256,7 @@ select Ano, sum(s) as total from
 group by Ano
 order by total desc;
 ```
+![image](https://user-images.githubusercontent.com/67427249/123200747-bc508880-d487-11eb-85a2-ecb914b7a4a4.png)
 
 # Contribuintes
 
