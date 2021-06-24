@@ -39,13 +39,16 @@ As análises abordadas aqui, envolvem o banco de dados de +27K linhas em relaç�
 
 # Perguntas
 ### Pergunta 1 
-- Em qual ano houve mais lançamentos de títulos
+- Ano com maior numero de títulos lançados 
 
 ```sql
-select year(release_date) as ano, count(appid) as qt
-from steam
-group by ano
-order by qt desc;
+select max(Ano), sum(s) as total from
+(
+SELECT YEAR(release_date) as Ano, count(name) as s FROM steam GROUP By release_date
+) as t
+group by Ano
+having Ano  = 2018
+order by total desc;
 ```
 ### Pergunta 2 
 - Quais os 10 Developers que produziram mais títulos
